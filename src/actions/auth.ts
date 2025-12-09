@@ -49,3 +49,19 @@ export async function login(_prevState: unknown, formData: FormData) {
     return { error: 'Something went wrong' };
   }
 }
+
+// make logout with post request to `https://reqres.in/api/logout` and delete the authToken cookie
+export async function logout() {
+  try {
+    await fetchReqRes('https://reqres.in/api/logout', {
+      method: 'POST'
+    });
+
+    const cookieStore = await cookies();
+    cookieStore.delete('authToken');
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
+
+  redirect('/login');
+}
