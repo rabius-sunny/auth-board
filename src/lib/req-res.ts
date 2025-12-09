@@ -1,15 +1,15 @@
-'use server';
+'use server'
 
-import { cookies } from 'next/headers';
+import { cookies } from 'next/headers'
 export const fetchReqRes = async (url: string, options: RequestInit) => {
-  const cookieStore = await cookies();
-  const authToken = cookieStore.get('authToken')?.value;
+  const cookieStore = await cookies()
+  const authToken = cookieStore.get('authToken')?.value
 
   if (authToken) {
     options.headers = {
       ...(options.headers ?? {}),
       Authorization: `Bearer ${authToken}`
-    };
+    }
   }
 
   return await fetch(url, {
@@ -19,5 +19,5 @@ export const fetchReqRes = async (url: string, options: RequestInit) => {
       'Content-Type': 'application/json',
       'x-api-key': process.env.REQRES_SECRET || ''
     }
-  });
-};
+  })
+}

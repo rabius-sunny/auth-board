@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: string | React.ReactNode;
+  children: string | React.ReactNode
 }
 
 export function Button({ children, className = '', ...props }: ButtonProps) {
@@ -12,5 +12,5 @@ export function Button({ children, className = '', ...props }: ButtonProps) {
     >
       {children}
     </button>
-  );
+  )
 }

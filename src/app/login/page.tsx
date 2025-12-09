@@ -1,32 +1,27 @@
-'use client';
+'use client'
 
-import { useActionState, useRef } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { login } from '@/actions/auth';
+import { useActionState, useRef } from 'react'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { login } from '@/actions/auth'
 
 export default function LoginPage() {
-  const [state, formAction, isPending] = useActionState(login, null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
+  const [state, formAction, isPending] = useActionState(login, null)
+  const emailRef = useRef<HTMLInputElement>(null)
+  const passwordRef = useRef<HTMLInputElement>(null)
 
   const fillExampleData = () => {
-    if (emailRef.current) emailRef.current.value = 'janet.weaver@reqres.in';
-    if (passwordRef.current) passwordRef.current.value = '12345678';
-  };
+    if (emailRef.current) emailRef.current.value = 'janet.weaver@reqres.in'
+    if (passwordRef.current) passwordRef.current.value = '12345678'
+  }
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gray-50'>
       <div className='max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md'>
         <div>
-          <h1 className='text-3xl font-bold text-center text-gray-900'>
-            Login to Auth Board
-          </h1>
+          <h1 className='text-3xl font-bold text-center text-gray-900'>Login to Auth Board</h1>
         </div>
-        <form
-          action={formAction}
-          className='mt-8 space-y-6'
-        >
+        <form action={formAction} className='mt-8 space-y-6'>
           {state?.error && (
             <div className='p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md'>
               {state.error}
@@ -47,11 +42,7 @@ export default function LoginPage() {
             required
             ref={passwordRef}
           />
-          <Button
-            type='submit'
-            disabled={isPending}
-            className='w-full'
-          >
+          <Button type='submit' disabled={isPending} className='w-full'>
             {isPending ? 'Logging in...' : 'Login'}
           </Button>
           <div className='text-center'>
@@ -68,9 +59,7 @@ export default function LoginPage() {
               <p className='text-xs text-gray-400 space-x-2'>
                 <span className='inline-block'>
                   <span className='text-gray-500 font-medium'>Email:</span>{' '}
-                  <span className='font-mono text-gray-600'>
-                    janet.weaver@reqres.in
-                  </span>
+                  <span className='font-mono text-gray-600'>janet.weaver@reqres.in</span>
                 </span>
                 <span className='text-gray-300'>•</span>
                 <span className='inline-block'>
@@ -83,5 +72,5 @@ export default function LoginPage() {
         </form>
       </div>
     </div>
-  );
+  )
 }
